@@ -1,0 +1,17 @@
+<div class="product-filter">
+  <div class="product-filter__title">Product Filter</div>
+  <form class="product-filter__section" [formGroup]="filterForm">
+    <div class="product-filter__item" *ngFor="let item of productFilter; index as i">
+      <label>
+        <input
+          type="checkbox"
+          name="filter"
+          value="{{ item.value }}"
+          formControlName="filter"
+          (change)="checkFilter($event, item)"
+        />
+        {{ item.value }}
+      </label>
+    </div>
+  </form>
+</div>

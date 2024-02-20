@@ -1,0 +1,26 @@
+<div class="product-listing">
+<product-filter></product-filter>
+
+<div class="product-listing__list">
+  <ng-container *ngFor="let item of productList">
+    <div
+      class="product-listing__item"
+      id="{{ item.id }}"
+      routerLink="/{{ item.link }}"
+    >
+      <div class="product-listing__image">
+        <img src="../../../assets/images/product-listing/{{ item.image }}" />
+      </div>
+      <div class="product-listing__info">
+        <div class="product-listing__desc">
+          <div class="product-listing__title">{{ item.title }}</div>
+          <div class="product-listing__tags">{{ item.tags }}</div>
+        </div>
+        <!-- <div class="product-listing__add">
+          <img src="../../../assets/images/product-listing/add.png" />
+        </div> -->
+      </div>
+    </div>
+  </ng-container>
+</div>
+</div>
