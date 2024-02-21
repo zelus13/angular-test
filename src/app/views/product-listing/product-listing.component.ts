@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListingComponent implements OnInit {
 
-  productList = [
+  intialProductList: any = [
     {
       id: 1,
       title: "product 1",
@@ -43,11 +43,26 @@ export class ProductListingComponent implements OnInit {
       link: "/product-5",
       tags: "beauty"
     }
-  ]
+  ];
+
+  filteredProductList:any = [];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.filteredProductList = this.intialProductList;
   }
+
+  filterArrayProduct(event: any) {
+    let val = event;
+
+    // this.intialProductList.filter((val) => {
+      // return this.productList.includes(val)
+    // })
+
+    console.log(val);
+    
+  }
+
 
 }

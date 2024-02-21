@@ -1,8 +1,8 @@
 <div class="product-listing">
-<product-filter></product-filter>
+<product-filter (filterProduct)="filterArrayProduct($event)"></product-filter>
 
 <div class="product-listing__list">
-  <ng-container *ngFor="let item of productList">
+  <ng-container *ngFor="let item of filteredProductList">
     <div
       class="product-listing__item"
       id="{{ item.id }}"

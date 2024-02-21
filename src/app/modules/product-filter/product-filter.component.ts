@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'product-filter',
@@ -7,15 +8,17 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./product-filter.component.scss'],
 })
 export class ProductFilterComponent implements OnInit {
+  @Output() filterProduct = new EventEmitter();
+
   productFilter = [
-    { id: '1', value: 'beauty' },
-    { id: '2', value: 'tools' },
-    { id: '3', value: 'entertainment' },
-    { id: '4', value: 'gadget' },
+    { id: 1, value: 'beauty' },
+    { id: 2, value: 'tools' },
+    { id: 3, value: 'entertainment' },
+    { id: 4, value: 'gadget' },
   ];
 
   filterForm!: FormGroup;
-  filterArray: string[] = [];
+  filterArray: any[] = [];
 
   constructor(private fb: FormBuilder) {}
 
@@ -30,16 +33,17 @@ export class ProductFilterComponent implements OnInit {
   }
 
   checkFilter(event: any, item: any) {
+    console.log(item);
+    
     if (event.target.checked) {
       this.filterArray.push(item.value);
     } else {
-      this.filterArray.splice(this.filterArray.indexOf(item.value))
+      console.log(this.filterArray, "array");
+      
+      let prodId = this.filterArray.find(x => x.id == item.id);
+      this.filterArray.splice(this.filterArray.indexOf(prodId));
     }
     console.log(this.filterArray);
-  }
-
-  filterArrayProduct() {
-    this.productFilter.filter((e) => (e.value.includes(this.filterArray)))
-
+    this.filterProduct.emit(this.filterArray);
   }
 }
