@@ -33,13 +33,9 @@ export class ProductFilterComponent implements OnInit {
   }
 
   checkFilter(event: any, item: any) {
-    console.log(item);
-    
     if (event.target.checked) {
       this.filterArray.push(item.value);
     } else {
-      console.log(this.filterArray, "array");
-      
       let prodId = this.filterArray.find(x => x.id == item.id);
       this.filterArray.splice(this.filterArray.indexOf(prodId));
     }
